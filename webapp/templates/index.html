@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+
+<link rel="stylesheet" href="static/style.css">
+<h2>Upload The Radiography Image</h2>
+
+<br>
+<p>
+  </p>
+<!-- Upload  -->
+<form id="file-upload-form" class="uploader" method=post enctype=multipart/form-data>
+  <input id="file-upload" type="file" name="image" accept="image/*" />
+  <br>
+  
+  <label for="file-upload" id="file-drag">
+    <!--<img id="file-image" src="#" alt="Preview" class="hidden">-->
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <!--
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>-->
+      <br>
+      <p>
+      </p>
+      <input id="predbutton" type=submit value=Predict>
+    </div>
+  </label>
+</form>
+<p>
+  <h3>Prediction: {{prediction}}</h3>
+
+</html>
