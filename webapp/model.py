@@ -1,3 +1,4 @@
+import tensorflow as tf
 # Model using custom class
 class ConvNet(tf.keras.Model):
 
