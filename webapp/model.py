@@ -21,3 +21,5 @@ class ConvNet(tf.keras.Model):
     x=self.dense1(x)
     x=self.drop(x)
     x=self.out(x)
+
+    return x
