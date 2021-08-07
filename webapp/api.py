@@ -7,11 +7,12 @@ import os
 from flask import Flask
 from flask import request
 from flask import render_template
+from inference import *
 
 
 app=Flask(__name__)
 
-UPLOAD_FOLDER="C:/Users/Ankan/Desktop/Github/covid19xray/webapp/static/image"
+UPLOAD_FOLDER=r"C:\Users\Ankan\Desktop\Github\CovZer\webapp\static\image"
 # "/" means web address first page
 @app.route("/",methods=["GET","POST"])
 
@@ -20,9 +21,11 @@ def upload_predict():
 		image_file=request.files["image"]
 		if image_file:
 			image_loc=os.path.join(UPLOAD_FOLDER,image_file.filename)
+			print(image_loc)
 			image_file.save(image_loc)
-			return render_template("index.html",prediction=1)
-	return render_template("index.html",prediction=0)
+			prediction = prediction_fn(image_loc)
+			return render_template("index.html",prediction=prediction)
+	return render_template("index.html",prediction="No Image Uploaded")
 
 
 
