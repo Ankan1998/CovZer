@@ -4,6 +4,8 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 
 def prediction_fn(img_path):
+
+    map_inf = {0: 'Covid', 1: 'Lung Opacity', 2: 'Normal', 3: 'Viral Pneumonia'}
     model_classification = keras.models.load_model(r'C:\Users\Ankan\Desktop\Github\CovZer\webapp\best_weightv2')
     #im_path='/content/drive/MyDrive/PROJECTS/Flutter_ML_Covid_Xray_Classification/dataset/Covid/COVID-3596.png'
     img = image.load_img(img_path, target_size=(128, 128))
@@ -12,4 +14,5 @@ def prediction_fn(img_path):
     img_batch /= 255.0
     tensor = tf.convert_to_tensor(img_batch)
     prediction = model_classification.predict(tensor)
-    return np.argmax(prediction, axis=0)
+    print(np.argmax(prediction, axis=0))
+    return map_inf[np.argmax(prediction, axis=0).item()]
